@@ -4,5 +4,9 @@
       = link_to 'Flix', root_path
     %nav
       %p
-        = link_to 'Sign Up', signup_path, class: 'button'
-        = link_to 'Sign In', signin_path, class: 'button'
+        - if current_user
+          = link_to current_user.name, user_url(current_user)
+          = link_to 'Sign Out', session_path, class: 'button', method: :delete, data: { confirm: 'Are you sure?' }
+        - else
+          = link_to 'Sign Up', signup_path, class: 'button'
+          = link_to 'Sign In', signin_path, class: 'button'
